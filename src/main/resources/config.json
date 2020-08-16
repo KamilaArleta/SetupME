@@ -1,0 +1,9 @@
+{"configuration": {
+  "version": "1.0",
+  "programs": [
+    {"name": "InteliJ", "version": "1.0","link":"www.google.pl"},
+    {"name": "Git", "version": "2.0","link":"www.google.pl"},
+    {"name": "Jdk", "version": "3.0","link":"www.google.pl"},
+    {"name": "Spotify", "version": "4.0","link":"www.google.pl"}
+  ]
+}}
