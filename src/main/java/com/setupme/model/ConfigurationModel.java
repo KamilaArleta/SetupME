@@ -6,6 +6,9 @@ public class ConfigurationModel {
     private String version;
     private List<ProgramModel> programs;
 
+    public ConfigurationModel() {
+    }
+
     public ConfigurationModel(String version, List<ProgramModel> programs) {
         this.version = version;
         this.programs = programs;
@@ -26,4 +29,13 @@ public class ConfigurationModel {
     public void setPrograms(List<ProgramModel> programs) {
         this.programs = programs;
     }
+
+    @Override
+    public String toString() {
+        return "ConfigurationModel{" +
+                "version='" + version + '\'' +
+                ", programs=" + programs +
+                '}';
+    }
 }
+

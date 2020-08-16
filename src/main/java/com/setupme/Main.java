@@ -1,10 +1,14 @@
 package com.setupme;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.setupme.model.ConfigurationModel;
+import com.setupme.model.FileModel;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +48,15 @@ public class Main {
             System.out.println("Example: java com.setupme.Main" + parser.printExample(ALL));
         }
         if (jsonPath != null) {
-            System.out.println("Is not ready" + parser.printExample(ALL));
+
+            ObjectMapper mapper = new ObjectMapper();
+            try (FileReader reader = new FileReader(ClassLoader.getSystemResource(jsonPath).getFile())) {
+                FileModel configuration = mapper.readValue(reader, FileModel.class);
+                System.out.println(configuration);
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
 
         }
     }

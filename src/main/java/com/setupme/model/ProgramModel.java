@@ -6,6 +6,9 @@ public class ProgramModel {
     private String version;
     private String link;
 
+    public ProgramModel() {
+    }
+
     public ProgramModel(String name, String version, String link) {
         this.name = name;
         this.version = version;
@@ -36,5 +39,12 @@ public class ProgramModel {
         this.link = link;
     }
 
-
+    @Override
+    public String toString() {
+        return "ProgramModel{" +
+                "name='" + name + '\'' +
+                ", version='" + version + '\'' +
+                ", link='" + link + '\'' +
+                '}';
+    }
 }
