@@ -1,9 +1,9 @@
 {"configuration": {
   "version": "1.0",
   "programs": [
-    {"name": "InteliJ", "version": "1.0","link":"www.google.pl"},
-    {"name": "Git", "version": "2.0","link":"www.google.pl"},
+    {"name": "Git", "version": "2.0","link":"https://github.com/git-for-windows/git/releases/download/v2.28.0.windows.1/Git-2.28.0-64-bit.exe"},
     {"name": "Jdk", "version": "3.0","link":"www.google.pl"},
-    {"name": "Spotify", "version": "4.0","link":"www.google.pl"}
+    {"name": "Spotify", "version": "4.0","link":"www.google.pl"},
+    {"name": "InteliJ", "version": "1.0","link":"https://download.jetbrains.com/idea/ideaIU-2020.2.exe?_ga=2.5313399.557627342.1598029333-13267397.1598029332"}
   ]
 }}
