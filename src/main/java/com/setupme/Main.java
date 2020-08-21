@@ -1,6 +1,10 @@
 package com.setupme;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.setupme.execution.manager.FileManager;
+import com.setupme.execution.manager.LinuxFileManager;
+import com.setupme.execution.manager.MacFileManager;
+import com.setupme.execution.manager.WindowsFileManager;
 import com.setupme.model.ConfigurationModel;
 import com.setupme.model.FileModel;
 import com.setupme.model.ProgramModel;
@@ -23,7 +27,11 @@ import static org.kohsuke.args4j.OptionHandlerFilter.ALL;
 
 public class Main {
 
+    private FileManager fileManager = getFileManager();
+
+
     private Logger LOG = Logger.getLogger(Main.class);
+
 
     @Option(name = "-h", usage = "show help")
     private boolean showHelp;
@@ -60,18 +68,23 @@ public class Main {
             try (FileReader reader = new FileReader(ClassLoader.getSystemResource(jsonPath).getFile())) {
                 FileModel configuration = mapper.readValue(reader, FileModel.class);
                 for (ProgramModel programModel : configuration.getConfiguration().getPrograms()) {
-                    LOG.warn("Im begining download program " + programModel.getName() + " " + programModel.getVersion() + " from link " + programModel.getLink());
-                    FileUtils.copyURLToFile(
-                            new URL(programModel.getLink()),
-                            new File(programModel.getName() + programModel.getVersion() + ".exe"),
-                            10000,
-                            10000
-                    );
-                    LOG.warn("Download complete");
+                    //todo implement file manager method
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+
+
+    private FileManager getFileManager() {
+        String osName = System.getProperty("os.name");
+        if (osName.startsWith("Windows")) {
+            return new WindowsFileManager();
+        }else if (osName.startsWith("Linux")){
+            return new LinuxFileManager();
+        }else {
+            return new MacFileManager();
         }
     }
 }
